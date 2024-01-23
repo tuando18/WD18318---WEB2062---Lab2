@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CamelCase Converter</title>
+  <style>
+    /* Optional: Add some basic styling for better presentation */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+    }
+
+    #output {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <textarea id="inputText" placeholder="Enter underscore_case variables"></textarea>
+  <button onclick="convertToCamelCase()">Convert to CamelCase</button>
+  <div id="output"></div>
+
+  <script>
+    let results = '';
+
+    function convertToCamelCase() {
+      const inputText = document.getElementById('inputText').value;
+      const lines = inputText.split('\n');
+
+      lines.forEach((line, index) => {
+        const words = line.split('_');
+        let camelCase = words[0];
+
+        for (let i = 1; i < words.length; i++) {
+          camelCase += words[i][0].toUpperCase() + words[i].slice(1);
+        }
+
+        results += `<p>${camelCase} ${'✅'.repeat(index + 1)}</p>`;
+      });
+
+      document.getElementById('output').innerHTML = results;
+    }
+  </script>
+
+</body>
+</html>
